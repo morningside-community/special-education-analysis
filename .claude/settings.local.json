@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:edresearchforaction.org)",
+      "WebFetch(domain:blueprint.marylandpublicschools.org)",
+      "WebFetch(domain:legis.delaware.gov)",
+      "WebFetch(domain:www.nea.org)",
+      "WebFetch(domain:www.sltrib.com)",
+      "WebFetch(domain:www.deseret.com)",
+      "WebFetch(domain:trackbill.com)",
+      "WebFetch(domain:www.stonebridgeworldschool.org)",
+      "WebFetch(domain:content.schoolinsites.com)",
+      "WebFetch(domain:www.schools.utah.gov)",
+      "WebFetch(domain:uepc.utah.edu)",
+      "WebFetch(domain:schools.utah.gov)"
+    ]
+  }
+}

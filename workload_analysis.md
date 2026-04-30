@@ -27,8 +27,8 @@ The following district-specific data comes from Granite School District's own No
 
 | District Metric | Value | Implication for Morningside |
 |----------------|-------|----------------------------|
-| Total SPED students served | ~8,102 | District has a large, growing SPED population |
-| SPED prevalence rate | ~13% (vs 11% state average) | Higher-than-average need across the district |
+| Total special education students served | ~8,102 | District has a large, growing special education population |
+| Special education prevalence rate | ~13% (vs 11% state average) | Higher-than-average need across the district |
 | Special education teachers | ~349 | |
 | **District-wide average caseload** | **~23.2 students/teacher** | Morningside's 21 is *below* the district average |
 | Daily service minutes delivered | ~64,000 across district | |
@@ -37,7 +37,7 @@ The following district-specific data comes from Granite School District's own No
 | Triennial re-evaluations per year | ~2,600 | |
 | Total evaluations per year | ~3,410 | ~9.8 per teacher per year |
 | Due process hearing cost | **~$70,000 per case** | Based on $400/hr attorney fees, ~175 hrs |
-| New SPED hires lacking licensure | ~50% | Staffing quality is already strained |
+| New special education hires lacking licensure | ~50% | Staffing quality is already strained |
 
 **Key finding:** Morningside's projected caseload of 21 students is *below* the Granite SD district-wide average of 23.2 students per teacher. Yet Morningside is the school whose position is being reduced to half-time.
 
@@ -45,7 +45,7 @@ The following district-specific data comes from Granite School District's own No
 
 | Metric | Value | Source |
 |--------|-------|--------|
-| Utah SPED teachers who transferred at least once in 8 years | **44%** (vs 31% elementary gen-ed, 28% secondary) | [KSL/UEPC](https://www.ksl.com/article/43487557/teacher-turnover-in-utah-exceeded-55-over-8-years) |
+| Utah special education teachers who transferred at least once in 8 years | **44%** (vs 31% elementary gen-ed, 28% secondary) | [KSL/UEPC](https://www.ksl.com/article/43487557/teacher-turnover-in-utah-exceeded-55-over-8-years) |
 | Utah early-career teacher turnover (first 5 years, 2016 cohort) | **42%** | [IES/REL West](https://ies.ed.gov/learn/blog/confronting-early-career-teacher-attrition-utah) |
 | Utah overall teacher turnover rate | 8.7-9.8% annually | Same |
 
@@ -65,7 +65,7 @@ The UEPC's statewide survey of Utah special education teachers found positive as
 | Minus: Lunch (duty-free) | 0.5 hrs/day x 5 days | -2.5 |
 | Minus: Before/after school duties | 0.5 hrs/day x 5 days | -2.5 |
 | Minus: Staff meetings, PLCs, school duties | ~1.5 hrs/week average | -1.5 |
-| **Available hours for SPED responsibilities** | | **31.0** |
+| **Available hours for special education responsibilities** | | **31.0** |
 
 Over a 36-week instructional year: **1,116 hours**
 
@@ -78,7 +78,7 @@ Over a 36-week instructional year: **1,116 hours**
 | Minus: Before/after school duties | 0.5 hrs/day x 2.5 days | -1.25 |
 | Minus: Staff meetings, PLCs (prorated) | ~0.75 hrs/week | -0.75 |
 | Minus: Travel time between schools | ~0.5 hrs x 2-3 transition days | -1.0 |
-| **Available hours for SPED responsibilities** | | **14.5** |
+| **Available hours for special education responsibilities** | | **14.5** |
 
 Over a 36-week instructional year: **522 hours**
 
@@ -226,7 +226,7 @@ Given that 72-74% of elementary students with disabilities read below basic leve
 
 | Activity | Annual Total |
 |----------|-------------|
-| Coordinating accommodations for SPED students during Acadience assessments (3x/year) | 6.0 hrs |
+| Coordinating accommodations for special education students during Acadience assessments (3x/year) | 6.0 hrs |
 | Reviewing results and aligning with IEP goals | 5.0 hrs |
 | **Subtotal assessments** | **11.0 hrs/year** |
 
@@ -293,7 +293,7 @@ Assuming approximately 4 of the 21 students are in 3rd grade:
 ## Part H: What This Means
 
 ### At full-time:
-The workload is tight but feasible. The teacher works slightly beyond contract hours (consistent with the NEA finding that SPED teachers average 6 extra hours/week), but can deliver services, meet compliance deadlines, and maintain relationships with students, families, and staff. This is the **baseline expectation**.
+The workload is tight but feasible. The teacher works slightly beyond contract hours (consistent with the NEA finding that special education teachers average 6 extra hours/week), but can deliver services, meet compliance deadlines, and maintain relationships with students, families, and staff. This is the **baseline expectation**.
 
 ### At half-time:
 **Over half the required work cannot be done.** The teacher must choose which obligations to cut:
@@ -321,7 +321,7 @@ These estimates use **conservative, low-end figures** from national research:
 | IEP prep time | 2 hrs/student | 2-4 hrs/student |
 | Evaluation time | 8 hrs/student | 8-20 hrs/student |
 | Paperwork | 5 hrs/week | 5-8 hrs/week |
-| % of SPED students below reading benchmark | 71% | 72-74% (NAEP) |
+| % of special education students below reading benchmark | 71% | 72-74% (NAEP) |
 
 **If actual Morningside data were substituted, the gap would almost certainly be larger.** These estimates can be refined with school-specific IEP service minutes, which would strengthen the analysis further.
 
@@ -353,7 +353,7 @@ These estimates use **conservative, low-end figures** from national research:
 
 ### Practitioner Sources
 - ProTeacher Community. "Academic IEP minutes." [Link](https://proteacher.net/discussions/threads/academic-iep-minutes.641510/)
-- Wrightslaw. "Hours of SPED Classroom Support per IEP." [Link](https://www.wrightslaw.com/blog/hours-of-sped-classroom-support-per-iep/)
+- Wrightslaw. "Hours of special education Classroom Support per IEP." [Link](https://www.wrightslaw.com/blog/hours-of-sped-classroom-support-per-iep/)
 - New York State Education Department. "Continuum of Special Education Services." [Link](https://www.nysed.gov/special-education/continuum-special-education-services-school-age-students-disabilities)
 
 ---

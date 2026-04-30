@@ -161,13 +161,13 @@ Utah Senate Bill 241, signed by the Governor on March 18, 2026, with provisions 
 
 For special education teachers at elementary schools like Morningside, SB 241 creates **substantial new responsibilities on top of existing IEP obligations**:
 
-| New SB 241 Responsibility | Impact on SPED Teacher |
+| New SB 241 Responsibility | Impact on special education Teacher |
 |---------------------------|----------------------|
-| Literacy team member for each K-3 SPED student with reading deficiency | Additional meetings, planning, and collaboration for potentially all 21 students |
+| Literacy team member for each K-3 special education student with reading deficiency | Additional meetings, planning, and collaboration for potentially all 21 students |
 | Individualized Reading Plan development | A new individualized plan *in addition to* the IEP — separate documentation, separate goals, separate progress monitoring |
-| Benchmark assessment coordination | Ensuring SPED students are appropriately assessed; coordinating accommodations and determining whether benchmark testing is appropriate per IEP |
+| Benchmark assessment coordination | Ensuring special education students are appropriately assessed; coordinating accommodations and determining whether benchmark testing is appropriate per IEP |
 | Science of reading professional development | Required training hours competing with already-limited time |
-| Retention decision participation | For 3rd graders with IEPs, the SPED teacher must participate in determining whether the "good cause" disability exemption applies |
+| Retention decision participation | For 3rd graders with IEPs, the special education teacher must participate in determining whether the "good cause" disability exemption applies |
 | Parent communication about IRPs | Additional parent conferences beyond IEP meetings — families must be "in those conversations with the school"[^24] |
 
 ### 6.3 The IRP + IEP Collision
@@ -183,13 +183,13 @@ The special education teacher must ensure these plans are **aligned and not cont
 
 SB 241 exempts students with disabilities from mandatory third-grade retention only where "benchmark testing isn't appropriate" per the student's IEP or 504 plan.[^22] This means:
 
-- The SPED teacher must **document and justify** why benchmark testing is or isn't appropriate for each 3rd grader with an IEP
-- If a 3rd grader with an IEP *is* subject to retention, the SPED teacher participates in the **retention decision and appeal process**
+- The special education teacher must **document and justify** why benchmark testing is or isn't appropriate for each 3rd grader with an IEP
+- If a 3rd grader with an IEP *is* subject to retention, the special education teacher participates in the **retention decision and appeal process**
 - Research shows that among children retained in third grade, approximately **18% had an IEP** at the time of retention, and an additional 10% received an IEP in the 1-2 years following retention.[^25] Retained students with IEPs require intensive ongoing support.
 
 ### 6.5 Timing Could Not Be Worse
 
-SB 241 takes effect **July 1, 2026** — the same school year Granite SD proposes to cut Morningside's SPED teacher to half-time. The district is simultaneously:
+SB 241 takes effect **July 1, 2026** — the same school year Granite SD proposes to cut Morningside's special education teacher to half-time. The district is simultaneously:
 
 - **Adding** major new literacy mandates that directly increase special education teacher workload
 - **Reducing** the staffing capacity to carry out those mandates
@@ -224,7 +224,7 @@ Itinerant models are most effective for **low-incidence** specialists (e.g., tea
 
 | Metric | Value |
 |--------|-------|
-| Current SPED enrollment | 28 |
+| Current special education enrollment | 28 |
 | K-4 students (continuing) | 21 |
 | 5th graders departing | 7 |
 | Granite SD threshold for full-time | 20 |
