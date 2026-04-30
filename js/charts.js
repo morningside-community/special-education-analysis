@@ -149,14 +149,18 @@ document.addEventListener('DOMContentLoaded', function () {
     new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ['Morningside Elementary', 'Granite SD Average'],
+        labels: [
+          'Morningside\nCurrent (all grades)',
+          'Morningside\nProjected (K-4 only)',
+          'Granite SD\nAverage'
+        ],
         datasets: [{
           label: 'Students per Teacher',
-          data: [21, 23.2],
-          backgroundColor: ['#0d6efd', '#adb5bd'],
+          data: [28, 21, 23.2],
+          backgroundColor: ['#6c757d', '#0d6efd', '#adb5bd'],
           borderWidth: 0,
           borderRadius: 4,
-          barPercentage: 0.5
+          barPercentage: 0.55
         }]
       },
       options: {
@@ -177,7 +181,7 @@ document.addEventListener('DOMContentLoaded', function () {
         scales: {
           y: {
             beginAtZero: true,
-            max: 30,
+            max: 35,
             title: {
               display: true,
               text: 'Students per Teacher',
@@ -195,7 +199,7 @@ document.addEventListener('DOMContentLoaded', function () {
               display: false
             },
             ticks: {
-              font: { size: 13 }
+              font: { size: 12 }
             }
           }
         },
