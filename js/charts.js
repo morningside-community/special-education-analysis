@@ -11,14 +11,25 @@ document.addEventListener('DOMContentLoaded', function () {
     var ctx = document.getElementById('workloadGapChart');
     if (!ctx) return;
 
+    // Data: low estimate, high estimate, and fixed availability values
+    var lowRequired = 31.94;
+    var highRequired = 50.60;
+    var fullTimeMid = 32.5;  // midpoint of 31-34 range
+    var halfTimeMid = 14.5;
+
     new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ['Required Weekly Hours', 'Full-Time Available', 'Half-Time Available'],
+        labels: [
+          'Required (conservative)',
+          'Required (mid-range)',
+          'Full-Time Available',
+          'Half-Time Available'
+        ],
         datasets: [{
           label: 'Hours per Week',
-          data: [31.94, 31.0, 14.5],
-          backgroundColor: ['#0d6efd', '#198754', '#dc3545'],
+          data: [lowRequired, highRequired, fullTimeMid, halfTimeMid],
+          backgroundColor: ['#0d6efd', '#084298', '#198754', '#dc3545'],
           borderWidth: 0,
           borderRadius: 3
         }]
@@ -34,18 +45,15 @@ document.addEventListener('DOMContentLoaded', function () {
           tooltip: {
             callbacks: {
               label: function (context) {
-                return ' ' + context.parsed.x.toFixed(2) + ' hrs/week';
+                return ' ' + context.parsed.x.toFixed(1) + ' hrs/week';
               }
             }
-          },
-          datalabels: {
-            display: false
           }
         },
         scales: {
           x: {
             beginAtZero: true,
-            max: 36,
+            max: 55,
             title: {
               display: true,
               text: 'Hours per Week',
@@ -63,9 +71,12 @@ document.addEventListener('DOMContentLoaded', function () {
               display: false
             },
             ticks: {
-              font: { size: 13 }
+              font: { size: 12 }
             }
           }
+        },
+        layout: {
+          padding: { right: 70 }
         },
         animation: {
           onComplete: function () {
@@ -81,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 var value = dataset.data[index];
                 var x = bar.x + 6;
                 var y = bar.y;
-                ctx2.fillText(value.toFixed(2) + ' hrs', x, y);
+                ctx2.fillText(value.toFixed(1) + ' hrs', x, y);
               });
             });
             ctx2.restore();
