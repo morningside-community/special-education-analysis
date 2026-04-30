@@ -264,6 +264,7 @@ document.addEventListener('DOMContentLoaded', function () {
         scales: {
           y: {
             beginAtZero: true,
+            max: 85000,
             title: {
               display: true,
               text: 'Amount (USD)',
@@ -273,6 +274,7 @@ document.addEventListener('DOMContentLoaded', function () {
               color: 'rgba(0,0,0,0.06)'
             },
             ticks: {
+              stepSize: 10000,
               callback: function (value) {
                 return '$' + value.toLocaleString();
               }
@@ -285,6 +287,11 @@ document.addEventListener('DOMContentLoaded', function () {
             ticks: {
               font: { size: 13 }
             }
+          }
+        },
+        layout: {
+          padding: {
+            top: 25
           }
         },
         animation: {
