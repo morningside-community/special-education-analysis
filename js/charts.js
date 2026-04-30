@@ -150,30 +150,48 @@ document.addEventListener('DOMContentLoaded', function () {
       type: 'bar',
       data: {
         labels: [
-          'Morningside\nCurrent (all grades)',
-          'Morningside\nProjected (K-4 only)',
-          'Granite SD\nAverage'
+          'Morningside Current',
+          'Granite SD Average'
         ],
-        datasets: [{
-          label: 'Students per Teacher',
-          data: [28, 21, 23.2],
-          backgroundColor: ['#6c757d', '#0d6efd', '#adb5bd'],
-          borderWidth: 0,
-          borderRadius: 4,
-          barPercentage: 0.55
-        }]
+        datasets: [
+          {
+            label: 'K-4 Students (21)',
+            data: [21, 23.2],
+            backgroundColor: ['#0d6efd', '#adb5bd'],
+            borderWidth: 0,
+            borderRadius: 0,
+            barPercentage: 0.55
+          },
+          {
+            label: 'Grade 5 Departing (7)',
+            data: [7, 0],
+            backgroundColor: ['#6c757d', 'transparent'],
+            borderWidth: 0,
+            borderRadius: {topLeft: 4, topRight: 4},
+            barPercentage: 0.55
+          }
+        ]
       },
       options: {
         responsive: true,
         maintainAspectRatio: true,
         plugins: {
           legend: {
-            display: false
+            display: true,
+            position: 'bottom',
+            labels: {
+              boxWidth: 14,
+              padding: 16,
+              font: { size: 12 },
+              filter: function (item) {
+                return item.text !== '';
+              }
+            }
           },
           tooltip: {
             callbacks: {
               label: function (context) {
-                return ' ' + context.parsed.y + ' students';
+                return ' ' + context.dataset.label + ': ' + context.parsed.y + ' students';
               }
             }
           }
@@ -182,6 +200,7 @@ document.addEventListener('DOMContentLoaded', function () {
           y: {
             beginAtZero: true,
             max: 35,
+            stacked: true,
             title: {
               display: true,
               text: 'Students per Teacher',
@@ -195,12 +214,18 @@ document.addEventListener('DOMContentLoaded', function () {
             }
           },
           x: {
+            stacked: true,
             grid: {
               display: false
             },
             ticks: {
-              font: { size: 12 }
+              font: { size: 13 }
             }
+          }
+        },
+        layout: {
+          padding: {
+            top: 25
           }
         },
         animation: {
@@ -211,12 +236,16 @@ document.addEventListener('DOMContentLoaded', function () {
             ctx2.font = 'bold 14px sans-serif';
             ctx2.fillStyle = '#212529';
             ctx2.textAlign = 'center';
-            chart.data.datasets.forEach(function (dataset, datasetIndex) {
-              var meta = chart.getDatasetMeta(datasetIndex);
-              meta.data.forEach(function (bar, index) {
-                var value = dataset.data[index];
-                ctx2.fillText(value, bar.x, bar.y - 8);
-              });
+            // Label total on top of each stacked bar
+            var meta0 = chart.getDatasetMeta(0);
+            var meta1 = chart.getDatasetMeta(1);
+            meta0.data.forEach(function (bar, index) {
+              var base = chart.data.datasets[0].data[index];
+              var top = chart.data.datasets[1].data[index];
+              var total = base + top;
+              // Use the top segment's bar if it exists, otherwise the base
+              var topBar = top > 0 ? meta1.data[index] : meta0.data[index];
+              ctx2.fillText(total, topBar.x, topBar.y - 8);
             });
             ctx2.restore();
           }
@@ -264,7 +293,7 @@ document.addEventListener('DOMContentLoaded', function () {
         scales: {
           y: {
             beginAtZero: true,
-            max: 85000,
+            max: 80000,
             title: {
               display: true,
               text: 'Amount (USD)',
