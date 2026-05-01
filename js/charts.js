@@ -35,7 +35,8 @@ document.addEventListener('DOMContentLoaded', function () {
             borderWidth: 0,
             borderRadius: 3,
             barPercentage: 0.7,
-            categoryPercentage: 0.7
+            categoryPercentage: 0.7,
+            order: 2
           },
           {
             label: 'Required (mid-range)',
@@ -44,7 +45,32 @@ document.addEventListener('DOMContentLoaded', function () {
             borderWidth: 0,
             borderRadius: 3,
             barPercentage: 0.7,
-            categoryPercentage: 0.7
+            categoryPercentage: 0.7,
+            order: 3
+          },
+          {
+            label: 'Full-time available (' + fullTime + ' hrs)',
+            type: 'line',
+            data: [fullTime, fullTime, fullTime],
+            borderColor: '#198754',
+            borderWidth: 2.5,
+            borderDash: [10, 5],
+            pointRadius: 0,
+            pointHoverRadius: 0,
+            fill: false,
+            order: 1
+          },
+          {
+            label: 'Half-time available (' + halfTime + ' hrs)',
+            type: 'line',
+            data: [halfTime, halfTime, halfTime],
+            borderColor: '#dc3545',
+            borderWidth: 2.5,
+            borderDash: [10, 5],
+            pointRadius: 0,
+            pointHoverRadius: 0,
+            fill: false,
+            order: 0
           }
         ]
       },
@@ -99,61 +125,17 @@ document.addEventListener('DOMContentLoaded', function () {
             var ctx2 = chart.ctx;
             ctx2.save();
 
-            // Draw value labels on bars
+            // Draw value labels on bar datasets only (skip line datasets)
             ctx2.font = 'bold 12px sans-serif';
             ctx2.fillStyle = '#212529';
             ctx2.textAlign = 'center';
             chart.data.datasets.forEach(function (dataset, di) {
+              if (dataset.type === 'line') return;
               var meta = chart.getDatasetMeta(di);
               meta.data.forEach(function (bar, i) {
                 ctx2.fillText(dataset.data[i].toFixed(1), bar.x, bar.y - 6);
               });
             });
-
-            var yScale = chart.scales.y;
-            var xScale = chart.scales.x;
-
-            // Helper: draw a labeled reference line with background
-            function drawRefLine(yValue, color, label) {
-              var py = yScale.getPixelForValue(yValue);
-
-              // Draw the line
-              ctx2.strokeStyle = color;
-              ctx2.lineWidth = 2.5;
-              ctx2.setLineDash([10, 5]);
-              ctx2.beginPath();
-              ctx2.moveTo(xScale.left, py);
-              ctx2.lineTo(xScale.right, py);
-              ctx2.stroke();
-              ctx2.setLineDash([]);
-
-              // Measure label
-              ctx2.font = 'bold 13px sans-serif';
-              var text = label;
-              var textWidth = ctx2.measureText(text).width;
-              var padX = 6;
-              var padY = 3;
-              var labelX = xScale.left + 10;
-              var labelY = py - 10;
-
-              // Draw background rectangle
-              ctx2.fillStyle = 'rgba(255, 255, 255, 0.9)';
-              ctx2.fillRect(labelX - padX, labelY - 12 - padY, textWidth + padX * 2, 16 + padY * 2);
-
-              // Draw border matching line color
-              ctx2.strokeStyle = color;
-              ctx2.lineWidth = 1.5;
-              ctx2.setLineDash([]);
-              ctx2.strokeRect(labelX - padX, labelY - 12 - padY, textWidth + padX * 2, 16 + padY * 2);
-
-              // Draw label text
-              ctx2.fillStyle = color;
-              ctx2.textAlign = 'left';
-              ctx2.fillText(text, labelX, labelY);
-            }
-
-            drawRefLine(fullTime, '#198754', 'Full-time available: ' + fullTime + ' hrs/week');
-            drawRefLine(halfTime, '#dc3545', 'Half-time available: ' + halfTime + ' hrs/week');
             ctx2.restore();
           }
         }
