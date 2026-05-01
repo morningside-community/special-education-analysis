@@ -84,26 +84,38 @@ document.addEventListener('DOMContentLoaded', function () {
             stack: 'required'
           },
           {
-            // Hidden dataset just for the legend entry
             label: 'Full-time available (' + fullTime + ' hrs)',
-            data: [],
+            data: [fullTime, fullTime, fullTime],
             borderColor: '#198754',
-            backgroundColor: '#198754',
-            borderWidth: 2.5,
+            backgroundColor: 'transparent',
+            borderWidth: 0,
             borderDash: [10, 5],
-            pointRadius: 0,
-            type: 'line'
+            pointRadius: 8,
+            pointHoverRadius: 10,
+            pointBackgroundColor: 'transparent',
+            pointBorderColor: 'transparent',
+            pointHoverBackgroundColor: '#198754',
+            pointHoverBorderColor: '#198754',
+            fill: false,
+            type: 'line',
+            stack: 'line1'
           },
           {
-            // Hidden dataset just for the legend entry
             label: 'Half-time available (' + halfTime + ' hrs)',
-            data: [],
+            data: [halfTime, halfTime, halfTime],
             borderColor: '#dc3545',
-            backgroundColor: '#dc3545',
-            borderWidth: 2.5,
+            backgroundColor: 'transparent',
+            borderWidth: 0,
             borderDash: [10, 5],
-            pointRadius: 0,
-            type: 'line'
+            pointRadius: 8,
+            pointHoverRadius: 10,
+            pointBackgroundColor: 'transparent',
+            pointBorderColor: 'transparent',
+            pointHoverBackgroundColor: '#dc3545',
+            pointHoverBorderColor: '#dc3545',
+            fill: false,
+            type: 'line',
+            stack: 'line2'
           }
         ]
       },
@@ -139,7 +151,10 @@ document.addEventListener('DOMContentLoaded', function () {
           tooltip: {
             callbacks: {
               label: function (context) {
-                if (context.dataset.type === 'line') return null;
+                var ds = context.dataset;
+                if (ds.type === 'line') {
+                  return ' ' + ds.label + ': ' + context.parsed.y.toFixed(1) + ' hrs/week';
+                }
                 // Show total (conservative + extra) for mid-range stack
                 if (context.datasetIndex === 1) {
                   var total = highHours[context.dataIndex];
