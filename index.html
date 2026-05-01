@@ -93,90 +93,151 @@
   <section id="workload" class="bg-light">
     <div class="container">
       <h2 class="mb-3">The Workload Gap</h2>
-      <p class="mb-4">A special education teacher's responsibilities extend far beyond direct instruction. Using conservative estimates from published research, state workload frameworks <sup><a href="#source-11">[11]</a>, <a href="#source-12">[12]</a>, <a href="#source-18">[18]</a></sup>, and Granite School District's own data <sup><a href="#source-1">[1]</a></sup>, the total weekly workload for 20 K&ndash;4 students can be quantified.</p>
+      <p class="mb-4">A special education teacher does far more than teach. For each student on their caseload, the teacher provides direct instruction, writes and manages the IEP, attends meetings, completes paperwork, collaborates with general education teachers, communicates with parents, monitors progress, and &mdash; starting this school year under SB 241 &mdash; participates in individualized reading plans and literacy teams. Using published research <sup><a href="#source-11">[11]</a>, <a href="#source-12">[12]</a>, <a href="#source-18">[18]</a></sup> and Granite School District's own data <sup><a href="#source-1">[1]</a></sup>, we can estimate how much teacher time each student requires.</p>
 
-      <div class="chart-container" style="max-width: 800px;">
-        <canvas id="workloadGapChart" height="200"></canvas>
-      </div>
-
-      <div class="text-center my-4">
-        <div class="callout-number callout-number--gap">53&ndash;70%</div>
-        <div class="callout-description">of required work cannot be completed at half-time (conservative to mid-range estimate)</div>
-      </div>
-
-      <!-- Full-time availability explanation -->
+      <!-- How many hours does a teacher have? -->
       <div class="card mb-4">
         <div class="card-body">
-          <h5 class="card-title mb-3">What Does "Full-Time Available" Mean?</h5>
-          <p class="mb-2">A full-time teacher's contract is typically <strong>37.5 hours/week</strong> (7.5 hrs/day &times; 5 days). Not all of that time is available for special education responsibilities:</p>
-          <div class="table-responsive">
-            <table class="table table-sm table-bordered mb-2" style="max-width: 500px;">
-              <tbody>
-                <tr><td>Contract hours</td><td class="text-end">37.5 hrs</td></tr>
-                <tr><td>Duty-free lunch (required by law)</td><td class="text-end">&minus;2.5 hrs</td></tr>
-                <tr><td>Before/after school duties (varies by school)</td><td class="text-end">&minus;0 to 2.5 hrs</td></tr>
-                <tr><td>Staff meetings, PLCs, school duties</td><td class="text-end">&minus;1.0 to 1.5 hrs</td></tr>
-                <tr class="fw-bold table-light"><td>Available for special education work</td><td class="text-end">31.0&ndash;34.0 hrs</td></tr>
-              </tbody>
-            </table>
+          <h5 class="card-title mb-3">How Many Hours Does a Teacher Have?</h5>
+          <p class="mb-2">A full-time teacher's contract is typically <strong>37.5 hours/week</strong> (7.5 hrs/day &times; 5 days). After subtracting duty-free lunch (required by law), staff meetings, and other school duties, a full-time special education teacher has approximately:</p>
+          <div class="row g-3 mb-3">
+            <div class="col-md-4">
+              <div class="stat-card h-100 text-center">
+                <div class="stat-number" style="font-size:2.2rem;">31&ndash;34</div>
+                <div class="stat-description">hours/week available<br><strong>full-time</strong></div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="stat-card stat-card--gap h-100 text-center">
+                <div class="stat-number" style="font-size:2.2rem;">~14.5</div>
+                <div class="stat-description">hours/week available<br><strong>half-time</strong> (minus travel)</div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="stat-card h-100 text-center" style="border-left-color: #6c757d;">
+                <div class="stat-number" style="font-size:2.2rem; color: #6c757d;">32.5</div>
+                <div class="stat-description">midpoint used in<br>calculations below</div>
+              </div>
+            </div>
           </div>
-          <p class="text-muted small mb-0">The chart uses 32.5 hours (midpoint). Actual availability depends on school-specific duty assignments. Half-time is calculated as 50% of this range: approximately 14.5&ndash;16.0 hours, minus travel time between schools.</p>
+          <p class="text-muted small mb-0">Deductions from 37.5: duty-free lunch (&minus;2.5 hrs), before/after school duties (&minus;0 to 2.5 hrs, varies by school), staff meetings and PLCs (&minus;1.0 to 1.5 hrs). Half-time additionally loses time to travel between schools.</p>
         </div>
       </div>
 
-      <h5 class="mb-3">Workload Breakdown by Category</h5>
+      <!-- How many hours does each student require? -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title mb-3">How Many Hours Does Each Student Require?</h5>
+          <p class="mb-3">Based on published research, each student on a special education teacher's caseload requires the following teacher time per week:</p>
+          <div class="table-responsive mb-3">
+            <table class="table table-striped table-bordered align-middle">
+              <thead class="table-dark">
+                <tr>
+                  <th>Responsibility</th>
+                  <th>Low Estimate</th>
+                  <th>High Estimate</th>
+                  <th>Source</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Direct instruction</td>
+                  <td>0.71 hrs</td>
+                  <td>1.15 hrs</td>
+                  <td>150&ndash;345 min/student/week, groups of 3&ndash;5 <sup><a href="#source-18">[18]</a></sup></td>
+                </tr>
+                <tr>
+                  <td>IEP meetings, evaluations, and preparation</td>
+                  <td>0.19 hrs</td>
+                  <td>0.31 hrs</td>
+                  <td>Annuals, triennials, amendments <sup><a href="#source-1">[1]</a></sup></td>
+                </tr>
+                <tr>
+                  <td>Paperwork and documentation</td>
+                  <td>0.25 hrs</td>
+                  <td>0.40 hrs</td>
+                  <td>Vannest &amp; Hagan-Burke (2010) <sup><a href="#source-12">[12]</a></sup></td>
+                </tr>
+                <tr>
+                  <td>Collaboration, consultation, and parent communication</td>
+                  <td>0.29 hrs</td>
+                  <td>0.41 hrs</td>
+                  <td>Grade-level teams, related services, families <sup><a href="#source-11">[11]</a></sup></td>
+                </tr>
+                <tr>
+                  <td>SB 241 responsibilities (new in 2026&ndash;27)</td>
+                  <td>0.10 hrs</td>
+                  <td>0.14 hrs</td>
+                  <td>Reading plans, literacy teams, benchmarks <sup><a href="#source-4">[4]</a>, <a href="#source-5">[5]</a></sup></td>
+                </tr>
+                <tr class="fw-bold table-secondary">
+                  <td>Total per student per week</td>
+                  <td>1.54 hrs</td>
+                  <td>2.42 hrs</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-muted small mb-0">Low estimates use the floor of published ranges. High estimates use mid-range values from the same sources. Only 20 states have specific caseload policies; Utah is not among them. <sup><a href="#source-19">[19]</a></sup></p>
+        </div>
+      </div>
+
+      <!-- Now multiply: the gap -->
+      <h5 class="mb-3">Multiply by Students: The Gap</h5>
+      <p class="mb-3">With each student requiring 1.54&ndash;2.42 hours of teacher time per week, here is what different caseloads demand compared to available hours:</p>
+
+      <div class="chart-container" style="max-width: 800px;">
+        <canvas id="workloadGapChart" height="280"></canvas>
+      </div>
+
       <div class="table-responsive mb-3">
-        <table class="table table-striped table-bordered align-middle">
+        <table class="table table-bordered align-middle">
           <thead class="table-dark">
             <tr>
-              <th>Category</th>
+              <th>Scenario</th>
+              <th>Students</th>
               <th>Low Estimate</th>
               <th>High Estimate</th>
-              <th>Source</th>
+              <th>Full-Time (32.5 hrs)</th>
+              <th>Half-Time (~14.5 hrs)</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Direct instruction (IEP service minutes)</td>
-              <td>14.29</td>
-              <td>23.00</td>
-              <td>150&ndash;345 min/student/week, group size 3&ndash;5 <sup><a href="#source-18">[18]</a></sup></td>
+              <td>Morningside K&ndash;4 (projected)</td>
+              <td class="text-center fw-bold">20</td>
+              <td>30.8 hrs</td>
+              <td>48.4 hrs</td>
+              <td class="table-warning">Tight fit / exceeds</td>
+              <td class="table-danger fw-bold">53&ndash;70% gap</td>
             </tr>
             <tr>
-              <td>IEP meetings and compliance</td>
-              <td>3.71</td>
-              <td>6.20</td>
-              <td>45&ndash;120 min meetings, 2&ndash;4 hrs prep, 8&ndash;20 hrs/evaluation <sup><a href="#source-1">[1]</a></sup></td>
+              <td>Morningside current (all grades)</td>
+              <td class="text-center fw-bold">28</td>
+              <td>43.1 hrs</td>
+              <td>67.8 hrs</td>
+              <td class="table-danger">Exceeds by 33&ndash;109%</td>
+              <td class="table-danger fw-bold">66&ndash;79% gap</td>
             </tr>
             <tr>
-              <td>Paperwork and documentation</td>
-              <td>5.00</td>
-              <td>8.00</td>
-              <td>Vannest &amp; Hagan-Burke (2010) <sup><a href="#source-12">[12]</a></sup></td>
-            </tr>
-            <tr>
-              <td>Collaboration and consultation</td>
-              <td>5.75</td>
-              <td>8.25</td>
-              <td>5 grade-level teams, related services, 20 families <sup><a href="#source-11">[11]</a></sup></td>
-            </tr>
-            <tr>
-              <td>SB 241 new responsibilities</td>
-              <td>2.06</td>
-              <td>2.85</td>
-              <td>Individualized reading plans, literacy teams, benchmarks <sup><a href="#source-4">[4]</a>, <a href="#source-5">[5]</a></sup></td>
-            </tr>
-            <tr class="fw-bold table-secondary">
-              <td>Total required</td>
-              <td>30.81</td>
-              <td>48.30</td>
-              <td></td>
+              <td>Granite SD district average</td>
+              <td class="text-center fw-bold">23.2</td>
+              <td>35.7 hrs</td>
+              <td>56.1 hrs</td>
+              <td class="table-warning">Exceeds by 10&ndash;73%</td>
+              <td class="table-danger fw-bold">59&ndash;74% gap</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <p class="text-muted small">Low estimates use conservative, floor-of-range figures from published research. High estimates use mid-range figures from the same sources. Actual Morningside-specific IEP data would pin down precise values. Note: only 20 states have specific caseload policies; Utah is not among them, leaving thresholds like Granite's "20 students" without state-level guidance. <sup><a href="#source-19">[19]</a></sup></p>
+      <div class="text-center my-4">
+        <div class="callout-number callout-number--gap">53&ndash;70%</div>
+        <div class="callout-description">of required work cannot be completed at half-time for 20 K&ndash;4 students</div>
+      </div>
+
+      <p class="text-muted small">Even at the conservative low estimate, 20 students nearly fill a full-time teacher's entire available week. At half-time, more than half the work simply cannot be done &mdash; meaning IEP services go undelivered, meetings are delayed, and compliance is at risk. The gap only grows with incoming kindergartners, mid-year transfers, or if the actual per-student workload falls closer to the mid-range estimate.</p>
     </div>
   </section>
 

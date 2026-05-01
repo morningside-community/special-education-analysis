@@ -11,49 +11,64 @@ document.addEventListener('DOMContentLoaded', function () {
     var ctx = document.getElementById('workloadGapChart');
     if (!ctx) return;
 
-    // Data: low estimate, high estimate, and fixed availability values
-    var lowRequired = 30.81;
-    var highRequired = 48.30;
-    var fullTimeMid = 32.5;  // midpoint of 31-34 range
-    var halfTimeMid = 14.5;
+    // Per-student hours from research
+    var perStudentLow = 1.54;
+    var perStudentHigh = 2.42;
+    var fullTime = 32.5;
+    var halfTime = 14.5;
+
+    // Scenarios
+    var scenarios = ['Morningside K-4\n(20 students)', 'Morningside Current\n(28 students)', 'Granite SD Average\n(23.2 students)'];
+    var studentCounts = [20, 28, 23.2];
+    var lowHours = studentCounts.map(function(n) { return Math.round(n * perStudentLow * 10) / 10; });
+    var highHours = studentCounts.map(function(n) { return Math.round(n * perStudentHigh * 10) / 10; });
 
     new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: [
-          'Required (conservative)',
-          'Required (mid-range)',
-          'Full-Time Available',
-          'Half-Time Available'
-        ],
-        datasets: [{
-          label: 'Hours per Week',
-          data: [lowRequired, highRequired, fullTimeMid, halfTimeMid],
-          backgroundColor: ['#0d6efd', '#084298', '#198754', '#dc3545'],
-          borderWidth: 0,
-          borderRadius: 3
-        }]
+        labels: scenarios,
+        datasets: [
+          {
+            label: 'Required (conservative)',
+            data: lowHours,
+            backgroundColor: '#6ea8fe',
+            borderWidth: 0,
+            borderRadius: 3,
+            barPercentage: 0.7,
+            categoryPercentage: 0.7
+          },
+          {
+            label: 'Required (mid-range)',
+            data: highHours,
+            backgroundColor: '#084298',
+            borderWidth: 0,
+            borderRadius: 3,
+            barPercentage: 0.7,
+            categoryPercentage: 0.7
+          }
+        ]
       },
       options: {
-        indexAxis: 'y',
         responsive: true,
         maintainAspectRatio: true,
         plugins: {
           legend: {
-            display: false
+            display: true,
+            position: 'bottom',
+            labels: { boxWidth: 14, padding: 12, font: { size: 12 } }
           },
           tooltip: {
             callbacks: {
               label: function (context) {
-                return ' ' + context.parsed.x.toFixed(1) + ' hrs/week';
+                return ' ' + context.dataset.label + ': ' + context.parsed.y.toFixed(1) + ' hrs/week';
               }
             }
           }
         },
         scales: {
-          x: {
+          y: {
             beginAtZero: true,
-            max: 55,
+            max: 75,
             title: {
               display: true,
               text: 'Hours per Week',
@@ -63,38 +78,65 @@ document.addEventListener('DOMContentLoaded', function () {
               color: 'rgba(0,0,0,0.06)'
             },
             ticks: {
-              stepSize: 5
+              stepSize: 10
             }
           },
-          y: {
+          x: {
             grid: {
               display: false
             },
             ticks: {
-              font: { size: 12 }
+              font: { size: 11 }
             }
           }
         },
         layout: {
-          padding: { right: 70 }
+          padding: { top: 25 }
         },
         animation: {
           onComplete: function () {
             var chart = this;
             var ctx2 = chart.ctx;
             ctx2.save();
-            ctx2.font = 'bold 13px sans-serif';
+
+            // Draw value labels on bars
+            ctx2.font = 'bold 12px sans-serif';
             ctx2.fillStyle = '#212529';
-            ctx2.textBaseline = 'middle';
-            chart.data.datasets.forEach(function (dataset, datasetIndex) {
-              var meta = chart.getDatasetMeta(datasetIndex);
-              meta.data.forEach(function (bar, index) {
-                var value = dataset.data[index];
-                var x = bar.x + 6;
-                var y = bar.y;
-                ctx2.fillText(value.toFixed(1) + ' hrs', x, y);
+            ctx2.textAlign = 'center';
+            chart.data.datasets.forEach(function (dataset, di) {
+              var meta = chart.getDatasetMeta(di);
+              meta.data.forEach(function (bar, i) {
+                ctx2.fillText(dataset.data[i].toFixed(1), bar.x, bar.y - 6);
               });
             });
+
+            // Draw full-time line
+            var yScale = chart.scales.y;
+            var xScale = chart.scales.x;
+            var ftY = yScale.getPixelForValue(fullTime);
+            ctx2.strokeStyle = '#198754';
+            ctx2.lineWidth = 2;
+            ctx2.setLineDash([8, 4]);
+            ctx2.beginPath();
+            ctx2.moveTo(xScale.left, ftY);
+            ctx2.lineTo(xScale.right, ftY);
+            ctx2.stroke();
+            ctx2.fillStyle = '#198754';
+            ctx2.font = 'bold 12px sans-serif';
+            ctx2.textAlign = 'left';
+            ctx2.fillText('Full-time: ' + fullTime + ' hrs', xScale.right + 4, ftY + 4);
+
+            // Draw half-time line
+            var htY = yScale.getPixelForValue(halfTime);
+            ctx2.strokeStyle = '#dc3545';
+            ctx2.beginPath();
+            ctx2.moveTo(xScale.left, htY);
+            ctx2.lineTo(xScale.right, htY);
+            ctx2.stroke();
+            ctx2.fillStyle = '#dc3545';
+            ctx2.fillText('Half-time: ' + halfTime + ' hrs', xScale.right + 4, htY + 4);
+
+            ctx2.setLineDash([]);
             ctx2.restore();
           }
         }
