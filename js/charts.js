@@ -402,10 +402,10 @@ document.addEventListener('DOMContentLoaded', function () {
     new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ['Est. Annual Savings (half-time)', 'Cost of One Due Process Case'],
+        labels: ['Cost Shifted from\nMorningside Budget', 'Cost of One\nDue Process Case'],
         datasets: [{
           label: 'Amount (USD)',
-          data: [35000, 70000],
+          data: [55000, 70000],
           backgroundColor: ['#198754', '#dc3545'],
           borderWidth: 0,
           borderRadius: 4,

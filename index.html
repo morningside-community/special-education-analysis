@@ -23,7 +23,7 @@
       </button>
       <div class="collapse navbar-collapse" id="mainNav">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="#situation">The Situation</a></li>
+          <li class="nav-item"><a class="nav-link" href="#problem">The Problem</a></li>
           <li class="nav-item"><a class="nav-link" href="#workload">Workload Gap</a></li>
           <li class="nav-item"><a class="nav-link" href="#district">District Data</a></li>
           <li class="nav-item"><a class="nav-link" href="#research">Research</a></li>
@@ -52,19 +52,19 @@
   </header>
 
   <!-- ============================================================
-       Section 2: The Situation
+       Section 2: The Problem
        ============================================================ -->
-  <section id="situation">
+  <section id="problem">
     <div class="container">
-      <h2 class="mb-3">The Situation</h2>
-      <p class="mb-4">Morningside Elementary School in Granite School District currently serves 28 students with IEPs. Of these, 20 are in grades K&ndash;4 and will continue next year (8 fifth-graders will move on). Granite School District has set 20 students as the minimum threshold for justifying a full-time special education teacher. Morningside meets this threshold exactly &mdash; yet the district plans to reduce the full-time special education position to half-time, with the teacher splitting their time between Morningside and a second school.</p>
+      <h2 class="mb-3">The Problem</h2>
+      <p class="mb-4">Morningside Elementary School in Granite School District currently serves 28 students with special education service minutes. Of these, 20 are in grades K&ndash;4 and will continue next year (8 fifth-graders will move on). Granite School District has set 20 students as the minimum threshold for justifying a full-time special education teacher. Morningside meets this threshold exactly &mdash; yet the district plans to reduce the full-time special education position to half-time, with the teacher splitting their time between Morningside and a second school.</p>
 
       <div class="row g-3 mb-4">
         <!-- Card 1 -->
         <div class="col-md-4">
           <div class="stat-card h-100">
             <div class="stat-number">20</div>
-            <div class="stat-description">Current K&ndash;4 students with IEPs</div>
+            <div class="stat-description">Current K&ndash;4 students with special education service minutes</div>
           </div>
         </div>
         <!-- Card 2 -->
@@ -83,7 +83,7 @@
         </div>
       </div>
 
-      <p class="text-muted">The decision was based on a count of 19 students. That number is now 20 &mdash; meeting the district's own threshold &mdash; and does not account for incoming kindergartners with IEPs or mid-year transfers.</p>
+      <p class="text-muted">The decision was made when there was a count of 19 students. That number is now 20 &mdash; meeting the district's own threshold &mdash; and does not account for incoming kindergartners with IEPs or mid-year transfers.</p>
     </div>
   </section>
 
@@ -144,31 +144,31 @@
                   <td>Direct instruction</td>
                   <td>0.71 hrs</td>
                   <td>1.15 hrs</td>
-                  <td>150&ndash;345 min/student/week, groups of 3&ndash;5 <sup><a href="#source-18">[18]</a></sup></td>
+                  <td>NASDSE (2003): 150&ndash;345 min/student/week; adjusted for groups of 3&ndash;5 <sup><a href="#source-18">[18]</a></sup></td>
                 </tr>
                 <tr>
                   <td>IEP meetings, evaluations, and preparation</td>
                   <td>0.19 hrs</td>
                   <td>0.31 hrs</td>
-                  <td>Annuals, triennials, amendments <sup><a href="#source-1">[1]</a></sup></td>
+                  <td>Granite SD (2025): 8,000+ meetings and 3,410 evaluations/year across 349 teachers <sup><a href="#source-1">[1]</a></sup></td>
                 </tr>
                 <tr>
                   <td>Paperwork and documentation</td>
                   <td>0.25 hrs</td>
                   <td>0.40 hrs</td>
-                  <td>Vannest &amp; Hagan-Burke (2010) <sup><a href="#source-12">[12]</a></sup></td>
+                  <td>Vannest &amp; Hagan-Burke (2010): avg. 5&ndash;8 hrs/week for full caseload <sup><a href="#source-12">[12]</a></sup></td>
                 </tr>
                 <tr>
                   <td>Collaboration, consultation, and parent communication</td>
                   <td>0.29 hrs</td>
                   <td>0.41 hrs</td>
-                  <td>Grade-level teams, related services, families <sup><a href="#source-11">[11]</a></sup></td>
+                  <td>NEA (2019): consultation with grade-level teams, related services, and families <sup><a href="#source-11">[11]</a></sup></td>
                 </tr>
                 <tr>
                   <td>SB 241 responsibilities (new in 2026&ndash;27)</td>
                   <td>0.10 hrs</td>
                   <td>0.14 hrs</td>
-                  <td>Reading plans, literacy teams, benchmarks <sup><a href="#source-4">[4]</a>, <a href="#source-5">[5]</a></sup></td>
+                  <td>Utah SB 241 (2026): reading plans, literacy teams, benchmark coordination <sup><a href="#source-4">[4]</a>, <a href="#source-5">[5]</a></sup></td>
                 </tr>
                 <tr class="fw-bold table-secondary">
                   <td>Total per student per week</td>
@@ -293,7 +293,7 @@
       </div>
 
       <p class="fw-semibold mb-2 mt-4">Caseload Comparison</p>
-      <p class="text-muted small mb-2">Morningside currently serves 28 students with IEPs. The projected count of 20 reflects only K&ndash;4 students continuing next year after 8 fifth-graders leave &mdash; and does not account for incoming kindergartners or mid-year transfers.</p>
+      <p class="text-muted small mb-2">Morningside currently serves 28 students with special education service minutes. The projected count of 20 reflects only K&ndash;4 students continuing next year after 8 fifth-graders leave &mdash; and does not account for incoming kindergartners or mid-year transfers.</p>
       <div class="chart-container">
         <canvas id="caseloadCompareChart" height="220"></canvas>
       </div>
@@ -475,7 +475,14 @@
         <canvas id="costCompareChart" height="220"></canvas>
       </div>
 
-      <p class="text-muted small">Granite School District estimates the cost of a due process hearing at approximately $70,000 per case, based on attorney fees of $400/hour over approximately 175 hours. <sup><a href="#source-1">[1]</a></sup> The annual salary difference between a full-time and half-time position is substantially less than this amount.</p>
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title mb-3">The Real Cost Calculation</h5>
+          <p class="mb-2">A special education teacher earns a total compensation of <strong>~$110,000/year</strong> (~$70,000 salary + ~$40,000 benefits). <sup><a href="#source-20">[20]</a></sup> By moving her to half-time at Morningside, the district shifts approximately <strong>$55,000</strong> of that cost to a second school's budget &mdash; but does not reduce total district spending.</p>
+          <p class="mb-2">Meanwhile, Granite School District estimates the cost of a single due process hearing at <strong>$70,000</strong>, based on attorney fees of $400/hour over approximately 175 hours. <sup><a href="#source-1">[1]</a></sup></p>
+          <p class="mb-0">If even one family at Morningside files a due process complaint because IEP services were not delivered &mdash; a foreseeable consequence of half-time staffing for 20 students &mdash; the legal cost alone exceeds the amount shifted from Morningside's budget. The district saves nothing, and students are harmed.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -571,6 +578,15 @@
         <li id="source-19" class="mb-2">
           Russ et al. (2020). Caseload Policies State by State.
           <a href="https://eric.ed.gov/?id=EJ1275086" target="_blank" rel="noopener">Link</a>
+        </li>
+      </ol>
+
+      <h4 class="mb-3">Salary Data</h4>
+      <ol start="20" class="mb-4">
+        <li id="source-20" class="mb-2">
+          Granite School District employee compensation (2025). Public salary records.
+          <a href="https://govsalaries.com/salaries/UT/granite-school-district" target="_blank" rel="noopener">GovSalaries</a> |
+          <a href="https://www.graniteschools.org/hr/salary-schedules/" target="_blank" rel="noopener">District Salary Schedules</a>
         </li>
       </ol>
     </div>
