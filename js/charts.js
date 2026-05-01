@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!ctx) return;
 
     // Data: low estimate, high estimate, and fixed availability values
-    var lowRequired = 31.94;
-    var highRequired = 50.60;
+    var lowRequired = 30.81;
+    var highRequired = 48.30;
     var fullTimeMid = 32.5;  // midpoint of 31-34 range
     var halfTimeMid = 14.5;
 
@@ -166,16 +166,16 @@ document.addEventListener('DOMContentLoaded', function () {
         ],
         datasets: [
           {
-            label: 'K-4 Students (21)',
-            data: [21, 23.2],
+            label: 'K-4 Students (20)',
+            data: [20, 23.2],
             backgroundColor: ['#0d6efd', '#adb5bd'],
             borderWidth: 0,
             borderRadius: 0,
             barPercentage: 0.55
           },
           {
-            label: 'Grade 5 Departing (7)',
-            data: [7, 0],
+            label: 'Grade 5 Departing (8)',
+            data: [8, 0],
             backgroundColor: ['#6c757d', 'transparent'],
             borderWidth: 0,
             borderRadius: {topLeft: 4, topRight: 4},
