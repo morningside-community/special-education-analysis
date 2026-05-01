@@ -110,33 +110,50 @@ document.addEventListener('DOMContentLoaded', function () {
               });
             });
 
-            // Draw full-time line
             var yScale = chart.scales.y;
             var xScale = chart.scales.x;
-            var ftY = yScale.getPixelForValue(fullTime);
-            ctx2.strokeStyle = '#198754';
-            ctx2.lineWidth = 2;
-            ctx2.setLineDash([8, 4]);
-            ctx2.beginPath();
-            ctx2.moveTo(xScale.left, ftY);
-            ctx2.lineTo(xScale.right, ftY);
-            ctx2.stroke();
-            ctx2.fillStyle = '#198754';
-            ctx2.font = 'bold 12px sans-serif';
-            ctx2.textAlign = 'left';
-            ctx2.fillText('Full-time: ' + fullTime + ' hrs', xScale.right + 4, ftY + 4);
 
-            // Draw half-time line
-            var htY = yScale.getPixelForValue(halfTime);
-            ctx2.strokeStyle = '#dc3545';
-            ctx2.beginPath();
-            ctx2.moveTo(xScale.left, htY);
-            ctx2.lineTo(xScale.right, htY);
-            ctx2.stroke();
-            ctx2.fillStyle = '#dc3545';
-            ctx2.fillText('Half-time: ' + halfTime + ' hrs', xScale.right + 4, htY + 4);
+            // Helper: draw a labeled reference line with background
+            function drawRefLine(yValue, color, label) {
+              var py = yScale.getPixelForValue(yValue);
 
-            ctx2.setLineDash([]);
+              // Draw the line
+              ctx2.strokeStyle = color;
+              ctx2.lineWidth = 2.5;
+              ctx2.setLineDash([10, 5]);
+              ctx2.beginPath();
+              ctx2.moveTo(xScale.left, py);
+              ctx2.lineTo(xScale.right, py);
+              ctx2.stroke();
+              ctx2.setLineDash([]);
+
+              // Measure label
+              ctx2.font = 'bold 13px sans-serif';
+              var text = label;
+              var textWidth = ctx2.measureText(text).width;
+              var padX = 6;
+              var padY = 3;
+              var labelX = xScale.left + 10;
+              var labelY = py - 10;
+
+              // Draw background rectangle
+              ctx2.fillStyle = 'rgba(255, 255, 255, 0.9)';
+              ctx2.fillRect(labelX - padX, labelY - 12 - padY, textWidth + padX * 2, 16 + padY * 2);
+
+              // Draw border matching line color
+              ctx2.strokeStyle = color;
+              ctx2.lineWidth = 1.5;
+              ctx2.setLineDash([]);
+              ctx2.strokeRect(labelX - padX, labelY - 12 - padY, textWidth + padX * 2, 16 + padY * 2);
+
+              // Draw label text
+              ctx2.fillStyle = color;
+              ctx2.textAlign = 'left';
+              ctx2.fillText(text, labelX, labelY);
+            }
+
+            drawRefLine(fullTime, '#198754', 'Full-time available: ' + fullTime + ' hrs/week');
+            drawRefLine(halfTime, '#dc3545', 'Half-time available: ' + halfTime + ' hrs/week');
             ctx2.restore();
           }
         }
