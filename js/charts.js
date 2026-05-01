@@ -22,55 +22,88 @@ document.addEventListener('DOMContentLoaded', function () {
     var studentCounts = [20, 28, 23.2];
     var lowHours = studentCounts.map(function(n) { return Math.round(n * perStudentLow * 10) / 10; });
     var highHours = studentCounts.map(function(n) { return Math.round(n * perStudentHigh * 10) / 10; });
+    // For stacking: mid-range shows only the additional hours above conservative
+    var extraHours = highHours.map(function(h, i) { return Math.round((h - lowHours[i]) * 10) / 10; });
+
+    // Custom plugin to draw full-width dashed reference lines
+    var refLinesPlugin = {
+      id: 'refLines',
+      afterDraw: function(chart) {
+        var ctx2 = chart.ctx;
+        var yScale = chart.scales.y;
+        var chartArea = chart.chartArea;
+        ctx2.save();
+
+        // Full-time line
+        var ftY = yScale.getPixelForValue(fullTime);
+        ctx2.strokeStyle = '#198754';
+        ctx2.lineWidth = 2.5;
+        ctx2.setLineDash([10, 5]);
+        ctx2.beginPath();
+        ctx2.moveTo(chartArea.left, ftY);
+        ctx2.lineTo(chartArea.right, ftY);
+        ctx2.stroke();
+
+        // Half-time line
+        var htY = yScale.getPixelForValue(halfTime);
+        ctx2.strokeStyle = '#dc3545';
+        ctx2.beginPath();
+        ctx2.moveTo(chartArea.left, htY);
+        ctx2.lineTo(chartArea.right, htY);
+        ctx2.stroke();
+
+        ctx2.setLineDash([]);
+        ctx2.restore();
+      }
+    };
 
     new Chart(ctx, {
       type: 'bar',
+      plugins: [refLinesPlugin],
       data: {
         labels: scenarios,
         datasets: [
           {
-            label: 'Required (conservative)',
+            label: 'Conservative estimate',
             data: lowHours,
             backgroundColor: '#6ea8fe',
             borderWidth: 0,
-            borderRadius: 3,
-            barPercentage: 0.7,
-            categoryPercentage: 0.7,
-            order: 2
+            borderRadius: 0,
+            barPercentage: 0.55,
+            categoryPercentage: 0.65,
+            stack: 'required'
           },
           {
-            label: 'Required (mid-range)',
-            data: highHours,
+            label: 'Mid-range estimate (additional)',
+            data: extraHours,
             backgroundColor: '#084298',
             borderWidth: 0,
-            borderRadius: 3,
-            barPercentage: 0.7,
-            categoryPercentage: 0.7,
-            order: 3
+            borderRadius: {topLeft: 4, topRight: 4},
+            barPercentage: 0.55,
+            categoryPercentage: 0.65,
+            stack: 'required'
           },
           {
+            // Hidden dataset just for the legend entry
             label: 'Full-time available (' + fullTime + ' hrs)',
-            type: 'line',
-            data: [fullTime, fullTime, fullTime],
+            data: [],
             borderColor: '#198754',
+            backgroundColor: '#198754',
             borderWidth: 2.5,
             borderDash: [10, 5],
             pointRadius: 0,
-            pointHoverRadius: 0,
-            fill: false,
-            order: 1
+            type: 'line'
           },
           {
+            // Hidden dataset just for the legend entry
             label: 'Half-time available (' + halfTime + ' hrs)',
-            type: 'line',
-            data: [halfTime, halfTime, halfTime],
+            data: [],
             borderColor: '#dc3545',
+            backgroundColor: '#dc3545',
             borderWidth: 2.5,
             borderDash: [10, 5],
             pointRadius: 0,
-            pointHoverRadius: 0,
-            fill: false,
-            order: 0
+            type: 'line'
           }
         ]
       },
@@ -81,12 +114,38 @@ document.addEventListener('DOMContentLoaded', function () {
           legend: {
             display: true,
             position: 'bottom',
-            labels: { boxWidth: 14, padding: 12, font: { size: 12 } }
+            labels: {
+              boxWidth: 14,
+              padding: 12,
+              font: { size: 12 },
+              usePointStyle: false,
+              generateLabels: function(chart) {
+                var datasets = chart.data.datasets;
+                return datasets.map(function(ds, i) {
+                  var isLine = ds.type === 'line';
+                  return {
+                    text: ds.label,
+                    fillStyle: isLine ? 'transparent' : ds.backgroundColor,
+                    strokeStyle: isLine ? ds.borderColor : ds.backgroundColor,
+                    lineWidth: isLine ? 2.5 : 0,
+                    lineDash: isLine ? [6, 3] : [],
+                    hidden: false,
+                    datasetIndex: i
+                  };
+                });
+              }
+            }
           },
           tooltip: {
             callbacks: {
               label: function (context) {
-                return ' ' + context.dataset.label + ': ' + context.parsed.y.toFixed(1) + ' hrs/week';
+                if (context.dataset.type === 'line') return null;
+                // Show total (conservative + extra) for mid-range stack
+                if (context.datasetIndex === 1) {
+                  var total = highHours[context.dataIndex];
+                  return ' Total (mid-range): ' + total.toFixed(1) + ' hrs/week';
+                }
+                return ' Conservative: ' + context.parsed.y.toFixed(1) + ' hrs/week';
               }
             }
           }
@@ -95,6 +154,7 @@ document.addEventListener('DOMContentLoaded', function () {
           y: {
             beginAtZero: true,
             max: 75,
+            stacked: true,
             title: {
               display: true,
               text: 'Hours per Week',
@@ -108,6 +168,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
           },
           x: {
+            stacked: true,
             grid: {
               display: false
             },
@@ -124,18 +185,27 @@ document.addEventListener('DOMContentLoaded', function () {
             var chart = this;
             var ctx2 = chart.ctx;
             ctx2.save();
-
-            // Draw value labels on bar datasets only (skip line datasets)
             ctx2.font = 'bold 12px sans-serif';
             ctx2.fillStyle = '#212529';
             ctx2.textAlign = 'center';
-            chart.data.datasets.forEach(function (dataset, di) {
-              if (dataset.type === 'line') return;
-              var meta = chart.getDatasetMeta(di);
-              meta.data.forEach(function (bar, i) {
-                ctx2.fillText(dataset.data[i].toFixed(1), bar.x, bar.y - 6);
-              });
+
+            // Label on top of stacked bars: show total (high) value
+            var meta1 = chart.getDatasetMeta(1); // top of stack
+            meta1.data.forEach(function (bar, i) {
+              ctx2.fillText(highHours[i].toFixed(1), bar.x, bar.y - 6);
             });
+
+            // Label inside the conservative (bottom) segment
+            var meta0 = chart.getDatasetMeta(0);
+            ctx2.fillStyle = '#ffffff';
+            ctx2.font = '11px sans-serif';
+            meta0.data.forEach(function (bar, i) {
+              var barHeight = bar.height;
+              if (barHeight > 20) {
+                ctx2.fillText(lowHours[i].toFixed(1), bar.x, bar.y + barHeight / 2 + 4);
+              }
+            });
+
             ctx2.restore();
           }
         }
