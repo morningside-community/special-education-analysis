@@ -402,27 +402,55 @@ document.addEventListener('DOMContentLoaded', function () {
     new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ['Cost Shifted from\nMorningside Budget', 'Cost of One\nDue Process Case'],
-        datasets: [{
-          label: 'Amount (USD)',
-          data: [55000, 70000],
-          backgroundColor: ['#198754', '#dc3545'],
-          borderWidth: 0,
-          borderRadius: 4,
-          barPercentage: 0.5
-        }]
+        labels: ['Annual Savings\n(half-time)', 'Potential Annual\nExposure (low)', 'Potential Annual\nExposure (high)'],
+        datasets: [
+          {
+            label: 'Due process ($70K/case)',
+            data: [0, 70000, 70000],
+            backgroundColor: '#dc3545',
+            stack: 'risk',
+            borderWidth: 0,
+            borderRadius: 0
+          },
+          {
+            label: 'Compensatory services',
+            data: [0, 50000, 180000],
+            backgroundColor: '#e85d6c',
+            stack: 'risk',
+            borderWidth: 0,
+            borderRadius: 0
+          },
+          {
+            label: 'Teacher replacement',
+            data: [0, 10000, 20000],
+            backgroundColor: '#f09ca5',
+            stack: 'risk',
+            borderWidth: 0,
+            borderRadius: {topLeft: 4, topRight: 4}
+          },
+          {
+            label: 'Savings',
+            data: [55000, 0, 0],
+            backgroundColor: '#198754',
+            borderWidth: 0,
+            borderRadius: 4
+          }
+        ]
       },
       options: {
         responsive: true,
         maintainAspectRatio: true,
         plugins: {
           legend: {
-            display: false
+            display: true,
+            position: 'bottom',
+            labels: { boxWidth: 14, padding: 10, font: { size: 11 } }
           },
           tooltip: {
             callbacks: {
               label: function (context) {
-                return ' $' + context.parsed.y.toLocaleString();
+                if (context.parsed.y === 0) return null;
+                return ' ' + context.dataset.label + ': $' + context.parsed.y.toLocaleString();
               }
             }
           }
@@ -430,28 +458,28 @@ document.addEventListener('DOMContentLoaded', function () {
         scales: {
           y: {
             beginAtZero: true,
-            max: 80000,
+            stacked: true,
             title: {
               display: true,
-              text: 'Amount (USD)',
+              text: 'Annual Amount (USD)',
               font: { size: 13 }
             },
             grid: {
               color: 'rgba(0,0,0,0.06)'
             },
             ticks: {
-              stepSize: 10000,
               callback: function (value) {
                 return '$' + value.toLocaleString();
               }
             }
           },
           x: {
+            stacked: true,
             grid: {
               display: false
             },
             ticks: {
-              font: { size: 13 }
+              font: { size: 11 }
             }
           }
         },
@@ -465,16 +493,31 @@ document.addEventListener('DOMContentLoaded', function () {
             var chart = this;
             var ctx2 = chart.ctx;
             ctx2.save();
-            ctx2.font = 'bold 14px sans-serif';
+            ctx2.font = 'bold 13px sans-serif';
             ctx2.fillStyle = '#212529';
             ctx2.textAlign = 'center';
-            chart.data.datasets.forEach(function (dataset, datasetIndex) {
-              var meta = chart.getDatasetMeta(datasetIndex);
-              meta.data.forEach(function (bar, index) {
-                var value = dataset.data[index];
-                ctx2.fillText('$' + value.toLocaleString(), bar.x, bar.y - 8);
+            // Label totals on top of each bar/stack
+            var labels = chart.data.labels;
+            for (var i = 0; i < labels.length; i++) {
+              var total = 0;
+              var topY = null;
+              var xPos = null;
+              chart.data.datasets.forEach(function (ds, di) {
+                var val = ds.data[i];
+                if (val > 0) {
+                  total += val;
+                  var meta = chart.getDatasetMeta(di);
+                  var bar = meta.data[i];
+                  if (bar) {
+                    xPos = bar.x;
+                    if (topY === null || bar.y < topY) topY = bar.y;
+                  }
+                }
               });
-            });
+              if (total > 0 && xPos !== null) {
+                ctx2.fillText('$' + total.toLocaleString(), xPos, topY - 8);
+              }
+            }
             ctx2.restore();
           }
         }
